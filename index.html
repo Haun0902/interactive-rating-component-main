@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Overpass&display=swap" rel="stylesheet">
+  <title>Frontend Mentor | Interactive rating component</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    .attribution {
+      font-size: 15px;
+      text-align: center;
+    }
+
+    .attribution a {
+      color: hsl(228, 45%, 44%);
+    }
+
+    .content {
+      font-size: 15px;
+      width: 350px;
+      height: 350px;
+      border-radius: 25px;
+      background-color: white;
+      margin: 0 auto;
+      margin-top: 150px;
+      margin-bottom: 200px;
+
+      background-color: hsl(213, 19%, 18%);
+      color: hsl(217, 12%, 63%);
+      padding-left: 30px;
+      padding-top: 30px;
+      font-family: 'Overpass', sans-serif;
+    }
+
+    h1 {
+      color: white;
+    }
+
+    .rating label {
+
+      font-size: 30px;
+      color: #ccc;
+    }
+
+
+    .rating input:checked~label {
+      color: #ffcc00;
+      /* Color for selected stars */
+    }
+
+    .icon-star {
+
+      position: relative;
+      width: 50px;
+      height: 50px;
+      background-color: hsl(213, 16%, 29%);
+      border-radius: 100%;
+      margin-top:0;
+      border: none;
+    }
+
+    img {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      width: 18px;
+      height: 18px;
+
+    }
+
+    .submit-btn {
+      width: 320px;
+      height: 40px;
+      border-radius: 20px;
+      margin-top: 20px;
+      background-color: hsl(25, 97%, 53%);
+      color: white;
+      font-family: 'Overpass', sans-serif;
+      font-size: 18px;
+      margin-left: 0px;
+      border: none;
+      letter-spacing: 2px;
+
+    }
+
+    .submit-btn:hover {
+      background-color: white;
+      color: hsl(25, 97%, 53%);
+    }
+
+    .btn {
+      width: 45px;
+      height: 45px;
+      border-radius: 30px;
+      margin-right: 20px;
+      border: none;
+      color: hsl(217, 12%, 63%);
+      background-color: hsl(213, 14%, 33%);
+      font-family: 'Overpass', sans-serif;
+    }
+
+    .btn:hover {
+      background-color: hsl(25, 97%, 53%);
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Rating state start -->
+  <div class="content">
+    <div class="icon-star">
+      <img src="./images/icon-star.svg" alt="icon-star">
+
+    </div>
+
+    <h1>How did we do?</h1>
+    <p> Please let us know how we did with your support request. All feedback is appreciated
+      to help us improve our offering!</p>
+    <button class="btn">1</button>
+    <button class="btn">2</button>
+    <button class="btn">3</button>
+    <button class="btn">4</button>
+    <button class="btn">5</button>
+
+
+    <button class="submit-btn" onclick="submitEvaluation()">SUBMIT</button>
+
+    <script>
+      function submitEvaluation() {
+        const selectedRating = document.querySelector('input[name="btn"]:checked');
+        if (selectedRating !== "") {
+          alert("Thank you for your rating: " + selectedRating);
+          // Here you can perform any additional actions with the rating value
+        } else {
+          alert("Please select a rating before submitting.");
+        }
+      }
+    </script>
+</body>
+
+</html>
+
+
+
+
+
+</form>
+
+</div>
+
+<!-- Rating state end -->
+
+<!-- Thank you state start -->
+
+You selected
+<!-- Add rating here --> out of 5
+
+Thank you!
+
+We appreciate you taking the time to give a rating. If you ever need more support,
+don’t hesitate to get in touch!
+
+<!-- Thank you state end -->
+
+
+<div class="attribution">
+  Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
+  Coded by <a href="#">Your Name Here</a>.
+</div>
+</body>
+
+</html>
