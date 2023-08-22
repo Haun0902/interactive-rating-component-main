@@ -35,7 +35,7 @@
 
       background-color: hsl(213, 19%, 18%);
       color: hsl(217, 12%, 63%);
-      padding-left: 30px;
+      padding-left: 20px;
       padding-top: 30px;
       font-family: 'Overpass', sans-serif;
     }
@@ -58,22 +58,21 @@
 
     .icon-star {
 
-      position: relative;
+
       width: 50px;
       height: 50px;
       background-color: hsl(213, 16%, 29%);
       border-radius: 100%;
-      margin-top:0;
+      margin-top: 0;
       border: none;
     }
 
-    img {
-      position: absolute;
+    .custom-image {
+      position: relative;
       top: 15px;
       left: 15px;
-      width: 18px;
-      height: 18px;
-
+      width: 21px;
+      height: 21px;
     }
 
     .submit-btn {
@@ -88,12 +87,13 @@
       margin-left: 0px;
       border: none;
       letter-spacing: 2px;
-
+      cursor: pointer;
     }
 
     .submit-btn:hover {
       background-color: white;
       color: hsl(25, 97%, 53%);
+
     }
 
     .btn {
@@ -105,42 +105,149 @@
       color: hsl(217, 12%, 63%);
       background-color: hsl(213, 14%, 33%);
       font-family: 'Overpass', sans-serif;
+      cursor: pointer;
     }
 
     .btn:hover {
       background-color: hsl(25, 97%, 53%);
       color: white;
     }
+
+    .btn--selected {
+      background-color: white;
+      ;
+    }
+
+    .review-answer {
+      display: none;
+
+    }
+
+    .review-answer p {
+      font-size: 15px;
+      background-color: white;
+      margin: 0 auto;
+      margin-top: 0;
+
+
+      background-color: hsl(213, 19%, 18%);
+      color: hsl(217, 12%, 63%);
+
+      padding-right: 10px;
+      padding-top: none;
+      font-family: 'Overpass', sans-serif;
+      text-align: center;
+    }
+
+    .review-answer h1 {
+      padding-left: 90px;
+    }
+
+
+
+    h3 {
+      color: hsl(25, 97%, 53%);
+      padding-top: 7px;
+      text-align: center;
+      font-weight: normal;
+      font-size: 15px;
+
+    }
+
+    .tina {
+      border-color: #ccc;
+      border-radius: 15px;
+      background-color: hsl(213, 16%, 29%);
+      width: 200px;
+      height: 30px;
+
+      margin-left: 20%;
+      font-family: 'Overpass', sans-serif;
+    }
+
+    .illustration-thank-you {
+      width: 165x;
+      margin-left: 75px;
+   
+    }
+
+    .container-centr {}
+   
   </style>
 </head>
 
 <body>
 
   <!-- Rating state start -->
-  <div class="content">
-    <div class="icon-star">
-      <img src="./images/icon-star.svg" alt="icon-star">
+  <div class="content content--submitted">
 
+    <div class="review-form">
+      <div class="icon-star">
+        <img src="./images/icon-star.svg" alt="icon-star" class="custom-image">
+
+      </div>
+      <h1>How did we do?</h1>
+      <p> Please let us know how we did with your support request. All feedback is appreciated
+        to help us improve our offering!</p>
+      <button class="btn">1</button>
+      <button class="btn">2</button>
+      <button class="btn">3</button>
+      <button class="btn">4</button>
+      <button class="btn">5</button>
+
+
+      <button class="submit-btn" onclick="submitEvaluation()">SUBMIT</button>
+    </div>
+    <div class="review-answer">
+      <div class="illustration-thank-you">
+        <img src="./images/illustration-thank-you.svg" alt="illustration-thank-you">
+      </div>
+
+      <div class="tina">
+        <div class="container-centr">
+          <h3>You selected <span class="selectedRating"> 3 </span> out of 5</h3>
+        </div>
+
+      </div>
+
+      <h1>Thank you!</h1>
+      <p>We appreciate you taking the time to give a rating. If you ever need more support, don’t hesitate to get in
+        touch!</p>
     </div>
 
-    <h1>How did we do?</h1>
-    <p> Please let us know how we did with your support request. All feedback is appreciated
-      to help us improve our offering!</p>
-    <button class="btn">1</button>
-    <button class="btn">2</button>
-    <button class="btn">3</button>
-    <button class="btn">4</button>
-    <button class="btn">5</button>
-
-
-    <button class="submit-btn" onclick="submitEvaluation()">SUBMIT</button>
 
     <script>
+      var numberOfButtons = document.querySelectorAll(".btn").length;
+      var selectedRating = null;
+      for (var i = 0; i < numberOfButtons; i++) {
+
+        document.querySelectorAll(".btn")[i].addEventListener("click", function () {
+          // find all elements with the class btn--selected and remove the class btn--selected
+          document.querySelectorAll('.btn--selected').forEach(function (element) {
+            element.classList.remove('btn--selected');
+          });
+
+          // add new class "btn--selected" to this element
+          this.classList.add('btn--selected');
+          selectedRating = this.innerText;
+        })
+      }
+
       function submitEvaluation() {
-        const selectedRating = document.querySelector('input[name="btn"]:checked');
-        if (selectedRating !== "") {
-          alert("Thank you for your rating: " + selectedRating);
+        //const selectedRating = document.querySelector('input[name="btn"]:checked');
+        if (selectedRating !== null) {
+          //      alert("You selected" + selectedRating + "out of 5");
+
+          // change the number in the text
+          document.querySelector('.selectedRating').innerHTML = selectedRating;
+
           // Here you can perform any additional actions with the rating value
+          console.log(document.querySelectorAll('.review-answer'));
+          document.querySelector('.review-answer').style.display = 'block';
+
+          // hide the review-form
+          document.querySelector('.review-form').style.display = 'none';
+          // show the revie-answer  
         } else {
           alert("Please select a rating before submitting.");
         }
@@ -162,13 +269,8 @@
 
 <!-- Thank you state start -->
 
-You selected
-<!-- Add rating here --> out of 5
 
-Thank you!
 
-We appreciate you taking the time to give a rating. If you ever need more support,
-don’t hesitate to get in touch!
 
 <!-- Thank you state end -->
 
